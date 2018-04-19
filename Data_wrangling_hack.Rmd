@@ -325,6 +325,8 @@ sd(data$hp_self)
 
 ```{r merge}
 #Merge the lab data and the 2 self-report dataframes (online, prescreen). 
+#lab_data and online common variable is "ID""
+#lab_data and prescreen data common variable is "P_ID" 
 #I approached this by merging each of the self-report surveys with the lab data independently and then combining those dataframes. I am sure there are other (probably better) ways.
 
 #print the head of the dataframe
