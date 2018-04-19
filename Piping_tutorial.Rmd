@@ -1,0 +1,41 @@
+---
+title: "Piping tutorial"
+author: "Bradley Hughes"
+date: "4/19/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(Lahman)
+library(tidyverse)
+```
+#Piping in R
+## From Chapter 18 R for Data Science (Grolemund, Wickham)
+
+###Pipes are used to combine a sequence of multiple operations
+
+The pipe, %>%, comes from the magrittr package by Stefan Milton Bache, but is loaded with the tidyverse
+
+###Much of the time it is used to make the sequence easier to read
+
+```{r}
+data <- Batting
+
+new_data <- select(data, AB, H, HR)
+
+#or with pipe
+new_data2 <- data %>% select(AB, H, HR)
+
+head(new_data == new_data2)
+
+#we can continue to add operations
+new_data2 <- data %>% select(AB, H, HR) %>% mutate(AVG = H/AB)
+
+head(new_data2)
+```
+
+##The authors warn to use pipes only when they are the best tool.
+###Do not use pipes when:
+1. You have more than 10 operations. This becomes confusing and difficult to debug
+2. Multiple inputs or outputs--piping is linear
